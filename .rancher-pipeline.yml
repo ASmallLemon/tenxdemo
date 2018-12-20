@@ -1,0 +1,14 @@
+stages:
+- name: dockerfile
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: example/nodejs:v1
+      pushRemote: true
+      registry: 127.0.0.1:34368
+- name: deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
+timeout: 60
